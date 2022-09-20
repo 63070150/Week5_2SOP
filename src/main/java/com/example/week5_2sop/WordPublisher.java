@@ -39,12 +39,12 @@ public class WordPublisher {
         boolean goodword = false;
         boolean badword = false;
         for (String Word : words.goodWords) {
-            if (Word.contains(s)) {
+            if (s.contains(Word)) {
                 goodword = true;
             }
         }
         for (String Word : words.badWords) {
-            if (Word.contains(s)) {
+            if (s.contains(Word)) {
                 badword = true;
             }
         }
@@ -62,8 +62,8 @@ public class WordPublisher {
     }
     @RequestMapping(value = "/getSentence", method = RequestMethod.GET)
     public Sentence getSentence(){
-        Object laa = rabbitTemplate.convertSendAndReceive("Direct", "get", "");
-        return (Sentence) laa;
+        Object sentence = rabbitTemplate.convertSendAndReceive("Direct", "get", "");
+        return (Sentence) sentence;
     }
 
 }
